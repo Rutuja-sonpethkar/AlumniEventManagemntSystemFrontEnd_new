@@ -1,0 +1,50 @@
+/* AddAlumni.css */
+
+/* Container styling */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Header style */
+  .d-flex {
+    display: flex;
+  }
+  
+  .justify-content-between {
+    justify-content: space-between;
+  }
+  
+  .align-items-center {
+    align-items: center;
+  }
+  
+  /* Ensure header size does not shrink */
+  h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+  
+  /* Position for close icon */
+  .position-absolute {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    cursor: pointer;
+    color: #dc3545;
+  }
+  
+  .position-absolute:hover {
+    color: #c82333;
+  }
+  
+  button:focus {
+    outline: none;
+  }
+  

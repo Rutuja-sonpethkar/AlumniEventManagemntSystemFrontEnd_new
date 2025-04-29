@@ -1,0 +1,166 @@
+/* General Layout */
+.student-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: rgb(244, 244, 249); /* Light background for the dashboard */
+}
+
+/* Sidebar Styling */
+.student-sidebar {
+  width: 240px;
+  background-color: rgb(34, 40, 49); /* Dark Slate Blue background */
+  color: rgb(255, 255, 255); /* White text color */
+  padding-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling */
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar Title */
+.sidebar-title {
+  font-size: 22px;
+  color: rgb(255, 255, 255); /* White text */
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+/* Sidebar Navigation Links */
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Sidebar Link Styling */
+.sidebar-link {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255); /* White text */
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 5px;
+}
+
+.sidebar-link:hover {
+  background-color: rgb(42, 85, 255); /* Vibrant blue hover effect */
+}
+
+.sidebar-link.active {
+  background-color: rgb(28, 170, 255); /* Active link background */
+}
+
+.sidebar-link i {
+  margin-right: 10px;
+}
+
+/* Dropdown Section Styling */
+.dropdown-section {
+  margin-bottom: 10px;
+}
+
+.dropdown-links {
+  display: none;
+  padding-left: 20px;
+  background-color: rgb(56, 64, 78); /* Dark Slate Gray dropdown background */
+  border-radius: 5px;
+}
+
+.dropdown-links.active {
+  display: block;
+}
+
+/* Sub-Link Styling in Dropdown */
+.sidebar-sub-link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 8px 15px;
+  display: block;
+  font-size: 14px;
+  transition: background-color 0.3s ease-in-out;
+  border-radius: 4px;
+}
+
+.sidebar-sub-link:hover {
+  background-color: rgb(42, 85, 255); /* Vibrant blue hover effect */
+}
+
+.sidebar-sub-link.active {
+  background-color: rgb(28, 170, 255); /* Active sub-link background */
+}
+
+/* Logout Button */
+.sidebar-link:last-child {
+  margin-top: auto;
+  background-color: rgb(255, 69, 58); /* Red background for logout */
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+}
+
+.sidebar-link:last-child:hover {
+  background-color: rgb(255, 49, 38); /* Darker red on hover */
+}
+
+/* Main Content Styling */
+.student-content {
+  margin-left: 240px; /* Space for the sidebar */
+  padding: 20px;
+  width: 100%;
+  background-color: rgb(249, 249, 249); /* Light background for the content */
+  transition: margin-left 0.3s ease-in-out; /* Smooth transition for resizing */
+}
+
+/* Page Title */
+h3 {
+  font-size: 24px;
+  color: rgb(34, 40, 49); /* Dark Slate Blue */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
+
+/* Placeholder Section */
+.placeholder {
+  padding: 20px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 8px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.placeholder h3 {
+  font-size: 22px;
+  color: rgb(34, 40, 49);
+  margin-bottom: 15px;
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+  .student-sidebar {
+    width: 200px;
+    padding-top: 15px;
+  }
+
+  .sidebar-title {
+    font-size: 20px;
+    padding-bottom: 20px;
+  }
+
+  .sidebar-link {
+    font-size: 14px;
+    padding: 10px 12px;
+  }
+
+  .sidebar-sub-link {
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .student-content {
+    margin-left: 0;
+    padding: 10px;
+  }
+}

@@ -1,0 +1,48 @@
+/* src/pages/Home.css */
+
+/* Ensure the body doesn't allow horizontal scrolling */
+body {
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  margin: 0;
+  padding: 0;
+  height: 100%; /* Ensure body takes full height */
+}
+
+/* The container takes the full height of the screen */
+.home-section {
+  width: 100%;
+  height: 100vh; /* Full viewport height */
+  margin: 0;
+  padding: 0;
+  background: none;
+  overflow: hidden; /* Ensure no overflow */
+  /* position: relative;  */
+}
+
+/* Video takes up the full screen width and height */
+.bg-video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%; /* Full viewport width */
+  height: 100%; /* Full viewport height */
+  object-fit: cover; /* Cover the screen without stretching, may crop */
+  z-index: 1; /* Ensure it's behind the content */
+}
+
+/* Optional: If you want to add overlay text or content, use the following (currently commented out) */
+.overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2; /* Ensure it's on top of the video */
+}
+
+/* Optional text styling */
+.overlay h1,
+.overlay p {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}

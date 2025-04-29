@@ -1,0 +1,95 @@
+.md-container {
+  padding: 30px;
+}
+
+.md-page-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.md-search-input {
+  margin-bottom: 20px;
+  padding: 8px;
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+.md-department-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.md-department-table th,
+.md-department-table td {
+  padding: 12px;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.md-department-table th {
+  background-color: #007bff;
+  color: white;
+}
+
+.md-btn {
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.md-btn-warning {
+  background-color: #f0ad4e;
+  color: white;
+}
+
+.md-btn-warning:hover {
+  background-color: #ec971f;
+}
+
+.md-btn-danger {
+  background-color: #d9534f;
+  color: white;
+}
+
+.md-btn-danger:hover {
+  background-color: #c9302c;
+}
+
+.md-btn-success {
+  background-color: #5bc0de;
+  color: white;
+}
+
+.md-btn-success:hover {
+  background-color: #31b0d5;
+}
+
+.md-btn-secondary {
+  background-color: #6c757d;
+  color: white;
+}
+
+.md-btn-secondary:hover {
+  background-color: #5a6268;
+}
+
+.md-input-edit {
+  padding: 6px;
+  font-size: 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+.md-actions {
+  display: flex;
+  justify-content: space-around;
+}
+
+.md-btn + .md-btn {
+  margin-left: 10px;
+}

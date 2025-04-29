@@ -1,0 +1,49 @@
+/* Ensure the body takes full height and centers content */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;  /* Ensure the body takes full viewport height */
+    flex-direction: column; /* Stack sections vertically */
+    color: #333;
+    margin: 0;
+  }
+  
+  /* Container for the login form */
+  .login-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    position: relative; /* This ensures it's positioned normally and does not affect other content */
+    z-index: 10; /* Make sure login form is on top */
+  }
+  
+  /* Input boxes styling for login form */
+  .login-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+  
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    cursor: pointer;
+  }
+  
+  .login-container button:hover {
+    background-color: #0056b3;
+  }
+  

@@ -1,0 +1,95 @@
+/* Close button styling (left side) */
+.ao-close-icon-left {
+  position: absolute;
+  top: 10px;
+  left: 20px; /* Position close button at top-left corner */
+  cursor: pointer;
+  color: #f00; /* Red color for the close icon */
+  transition: color 0.3s ease;
+}
+
+.ao-close-icon-left:hover {
+  color: #b00; /* Darker red on hover */
+}
+
+/* Container for the form */
+.ao-container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Center text for form heading */
+.ao-text-center {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Spacing between the form fields */
+.ao-d-flex {
+  display: flex;
+  gap: 20px; /* Adds space between the fields */
+}
+
+/* Form group styling */
+.ao-form-group {
+  margin-bottom: 15px;
+}
+
+.ao-mt-2 {
+  margin-top: 10px;
+}
+
+.ao-mt-3 {
+  margin-top: 20px;
+}
+
+.ao-alert {
+  margin-top: 15px;
+}
+
+/* Input fields and selects styling */
+.ao-input,
+.ao-select {
+  width: 100%;
+  padding: 8px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+}
+
+.ao-input:focus,
+.ao-select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Button styling */
+.ao-btn-lg {
+  padding: 12px 20px;
+  font-size: 16px;
+  width: 100%;
+  max-width: 300px; /* Max width for better responsiveness */
+}
+
+.ao-button-width {
+  width: 100%;
+  max-width: 300px;
+}
+
+/* Add space between button and input boxes */
+.ao-d-flex.ao-mt-2 {
+  margin-top: 15px; /* Space between rows */
+}
+
+/* Flexbox container for admin selection section */
+.ao-admin-enable-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+/* Make sure form elements look uniform */
+.ao-label {
+  font-weight: bold;
+}

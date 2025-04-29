@@ -1,0 +1,113 @@
+/* Sidebar Styling */
+.admin-dashboard {
+  display: flex;
+  min-height: 100vh;
+  background-color: rgb(244, 244, 249); /* Light background for the entire dashboard */
+}
+
+.admin-sidebar {
+  width: 240px;
+  background-color: rgb(34, 40, 49); /* Dark Slate Blue background */
+  color: rgb(255, 255, 255); /* White text color */
+  padding-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow: hidden; /* Prevent scrolling */
+  box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar-title {
+  font-size: 22px;
+  color: rgb(255, 255, 255); /* White text */
+  text-align: center;
+  padding-bottom: 30px;
+}
+
+.sidebar-nav {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sidebar-link {
+  padding: 10px 15px;
+  cursor: pointer;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  color: rgb(255, 255, 255); /* White text */
+  transition: background-color 0.3s;
+}
+
+.sidebar-link:hover {
+  background-color: rgb(42, 85, 255); /* Vibrant blue hover effect */
+}
+
+.dropdown-section {
+  margin-bottom: 10px;
+}
+
+.dropdown-links {
+  display: none;
+  padding-left: 20px;
+  background-color: rgb(56, 64, 78); /* Dark Slate Gray dropdown background */
+}
+
+.dropdown-links.active {
+  display: block;
+}
+
+.sidebar-sub-link {
+  color: rgb(255, 255, 255);
+  text-decoration: none;
+  padding: 8px 15px;
+  display: block;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.sidebar-sub-link:hover {
+  background-color: rgb(42, 85, 255); /* Vibrant blue hover effect */
+}
+
+.sidebar-link i {
+  margin-right: 10px;
+}
+
+/* Main content styling */
+.admin-content {
+  margin:70px 100px 100px 240px;
+  padding: 20px;
+  width: 100%;
+  background-color: rgb(184, 183, 183);
+  
+}
+
+h3 {
+  font-size: 24px;
+  color: rgb(34, 40, 49); /* Dark Slate Blue */
+  margin-bottom: 20px;
+}
+
+/* Logout Button */
+.sidebar-link:last-child {
+  margin-top: auto;
+  background-color: rgb(255, 69, 58); /* Red background for logout */
+  color: rgb(255, 255, 255);
+}
+
+.sidebar-link:last-child:hover {
+  background-color: rgb(255, 49, 38); /* Darker red on hover */
+}
+
+/* Hover effects for dropdown links */
+.dropdown-section:hover .dropdown-links {
+  display: block;
+}
+
+/* Active Link Background */
+.sidebar-sub-link.active {
+  background-color: rgb(28, 170, 255); /* Light Sky Blue for active link */
+}

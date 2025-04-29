@@ -1,0 +1,104 @@
+/* Navbar container styling */
+.navbar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #003366; /* Background color */
+  padding: 0 30px;
+  height: 70px; /* Set height of the navbar */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-sizing: border-box;
+}
+
+/* Title on the left side */
+.navbar-left .navbar-title {
+  color: white;
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0;
+}
+
+/* Right-side navigation menu */
+.navbar-right {
+  display: flex;
+  gap: 20px;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  color: white;
+}
+
+/* Each navigation item */
+.nav-item {
+  font-size: 18px;
+}
+
+/* Links in the navbar */
+.nav-link {
+  color: white; /* Set text color to white */
+  text-decoration: none;
+  padding: 10px 15px; /* Padding for the link */
+  border-radius: 5px; /* Rounded corners */
+  transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+.nav-link:hover {
+  background-color: #0055aa; /* Background color on hover */
+}
+
+
+/* About us */
+
+
+.about-fullscreen {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 0;
+}
+
+.about-box {
+  width: 100%;
+  background-color: #ffffff;
+  padding: 40px 20px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+}
+
+.about-box h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+  color: #333;
+}
+
+.about-box h2 {
+  font-size: 1.75rem;
+  margin-top: 30px;
+  color: #444;
+}
+
+.about-box p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.6;
+  margin-top: 10px;
+}
+
+.about-box ul {
+  padding-left: 20px;
+  margin-top: 10px;
+}
+
+.about-box li {
+  margin-bottom: 8px;
+  font-size: 1rem;
+  color: #555;
+}

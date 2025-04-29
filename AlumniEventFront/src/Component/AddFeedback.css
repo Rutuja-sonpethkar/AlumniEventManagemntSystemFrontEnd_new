@@ -1,0 +1,77 @@
+.add-feedback-container {
+  max-width: 500px;
+  margin: 50px auto;
+  background: #f8f9fa;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0px 0px 12px rgba(0,0,0,0.1);
+}
+
+.add-feedback-heading {
+  text-align: center;
+  color: #343a40;
+  margin-bottom: 25px;
+}
+
+.add-feedback-success,
+.add-feedback-error {
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.add-feedback-success {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.add-feedback-error {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.add-feedback-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-feedback-form-group {
+  margin-bottom: 20px;
+}
+
+.add-feedback-form-group label {
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.add-feedback-form-control {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  font-size: 15px;
+}
+
+.add-feedback-form-control:focus {
+  border-color: #80bdff;
+  outline: none;
+}
+
+.add-feedback-submit-btn {
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.add-feedback-submit-btn:hover {
+  background-color: #0056b3;
+}

@@ -1,0 +1,55 @@
+/* General form styling */
+.assign-event-form .form-label {
+  font-size: 16px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8px;
+}
+
+/* Styling for the dropdowns (Event Name and Batch Year) */
+.assign-event-form .form-control,
+.assign-event-form .form-select {
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #ccc;
+  padding: 10px;
+  font-size: 14px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.assign-event-form .form-control:focus,
+.assign-event-form .form-select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.25);
+}
+
+/* Padding and margin for the form fields */
+.assign-event-form  {
+  margin-bottom: 20px;
+}
+
+.assign-event-form  label {
+  font-size: 14px;
+  color: #666;
+}
+
+/* Styling for the Submit Button */
+.assign-event-form .btn {
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 5px;
+}
+
+/* Adjustments for small screens */
+@media (max-width: 768px) {
+  .assign-event-form .mb-3 {
+    margin-bottom: 15px;
+  }
+
+  .assign-event-form .form-control,
+  .assign-event-form .form-select {
+    padding: 12px;
+    font-size: 14px;
+  }
+}

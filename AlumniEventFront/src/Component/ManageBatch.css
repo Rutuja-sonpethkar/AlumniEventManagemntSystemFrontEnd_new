@@ -1,0 +1,48 @@
+.manage-batch-container {
+    padding: 20px;
+    background-color: #f9f9f9;
+  }
+  
+  .manage-batch-header h3 {
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .manage-batch-card {
+    border: none;
+    background-color: #fff;
+  }
+  
+  .manage-batch-table th,
+  .manage-batch-table td {
+    vertical-align: middle;
+  }
+  
+  .manage-batch-update-btn {
+    background-color: #f0ad4e;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .manage-batch-update-btn:hover {
+    background-color: #ec971f;
+  }
+  
+  .manage-batch-delete-btn {
+    background-color: #d9534f;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+  }
+  
+  .manage-batch-delete-btn:hover {
+    background-color: #c9302c;
+  }
+  
