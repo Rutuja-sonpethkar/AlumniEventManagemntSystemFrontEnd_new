@@ -91,3 +91,131 @@ button:focus {
 .edit-form button {
   margin-top: 10px;
 }
+
+/* Styling for the Pagination Container */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+/* Styling for each page number button */
+.page-btn {
+  padding: 8px 16px;
+  margin: 0 5px;
+  border: 1px solid #ddd;
+  background-color: #f8f9fa;
+  color: #333;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+/* Hover effect for page number buttons */
+.page-btn:hover {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Active page button styling */
+.page-btn.active {
+  background-color: #007bff;
+  color: white;
+  font-weight: bold;
+  pointer-events: none; /* Disable clicking the active page */
+}
+
+/* Optional: Styling for page number buttons when disabled (e.g., first or last page) */
+.page-btn:disabled {
+  background-color: #e9ecef;
+  cursor: not-allowed;
+}
+/* Styling for action buttons container */
+.action-buttons {
+  display: flex;
+  align-items: center;
+}
+
+/* Styling for individual action buttons */
+.action-buttons .btn {
+  margin-right: 8px; /* Adds spacing between buttons */
+  padding: 6px 12px;
+  font-size: 14px;
+}
+
+/* Optional: Change button style on hover for better feedback */
+.action-buttons .btn:hover {
+  opacity: 0.8;
+}
+
+.alumni-container {
+  margin: 20px;
+}
+
+.success-message {
+  color: green;
+  font-size: 16px;
+  margin-bottom: 15px;
+}
+
+.search-input {
+  margin-bottom: 15px;
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.alumni-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.alumni-table th,
+.alumni-table td {
+  padding: 8px;
+  text-align: left;
+}
+
+.alumni-table th {
+  background-color: #f2f2f2;
+}
+
+.pagination {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.page-btn {
+  padding: 6px 12px;
+  margin: 0 5px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.page-btn.active {
+  background-color: #0056b3;
+}
+
+.page-btn:hover {
+  background-color: #0056b3;
+}
+
+.edit-form {
+  margin-top: 20px;
+}
+
+.edit-form input,
+.edit-form select {
+  margin: 5px 0;
+  padding: 8px;
+  width: 100%;
+  max-width: 300px;
+}
+
+.edit-form button {
+  margin: 5px;
+}

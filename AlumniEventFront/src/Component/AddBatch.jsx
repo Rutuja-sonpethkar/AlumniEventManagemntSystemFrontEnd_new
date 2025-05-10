@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import './AddBatch.css'; 
 const AddBatch = () => {
   const [batchYear, setBatchYear] = useState('');
   const [message, setMessage] = useState('');
@@ -19,12 +19,17 @@ const AddBatch = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ batchyear: trimmedYear }), // Backend expects 'batchyear'
+        body: JSON.stringify({ batchyear: trimmedYear }),
       });
 
       if (response.ok) {
         setMessage('✅ Batch added successfully!');
         setBatchYear('');
+        
+       
+        setTimeout(() => {
+          setMessage('');
+        }, 2000);
       } else {
         setMessage('❌ Failed to add batch.');
       }
@@ -35,24 +40,27 @@ const AddBatch = () => {
   };
 
   return (
-    <div className="container mt-5" >
-      <h4>Add Batch</h4>
-      <form onSubmit={handleAddBatch} >
-        <input
-          type="text"
-          className="form-control"
-          style={{ maxWidth: '220px' }}
-          placeholder="Enter Batch Year"
-          value={batchYear}
-          onChange={(e) => setBatchYear(e.target.value)}
-        /><br></br>
-        <button type="submit" className="btn btn-primary">Add Year</button>
-      </form>
-      {message && (
-        <div className={`alert ${message.includes('✅') ? 'alert-success' : 'alert-danger'} py-2 px-3`}>
-          {message}
-        </div>
-      )}
+    <div className="batch-container">
+      <div className="batch-box">
+        <h4 className="batch-title">Add Batch</h4>
+        <form onSubmit={handleAddBatch}>
+          <input
+            type="text"
+            placeholder="Enter Batch Year"
+            className="form-control batch-input"
+            value={batchYear}
+            onChange={(e) => setBatchYear(e.target.value)}
+          />
+          <button type="submit" className="btn btn-primary batch-button">
+            Add Year
+          </button>
+        </form>
+        {message && (
+          <div className={`batch-message ${message.includes('✅') ? 'success' : 'error'}`}>
+            {message}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

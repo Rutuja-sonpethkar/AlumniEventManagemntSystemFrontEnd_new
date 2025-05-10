@@ -7,38 +7,40 @@ const ViewFeedback = () => {
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
+    const student = JSON.parse(localStorage.getItem("student"));
+    const sid = student?.sid;
+
+    if (!sid) {
+      console.error("No sid found in localStorage");
+      return;
+    }
+
+    const fetchFeedback = async () => {
+      try {
+        const response = await axios.get(`http://localhost:8080/api/showstudentfeedback/${sid}`);
+        setFeedbackList(response.data);
+      } catch (error) {
+        if (error.response?.status === 409) {
+          setErrorMessage("No feedback found.");
+        } else {
+          setErrorMessage("Error fetching feedback.");
+        }
+      }
+    };
+
     fetchFeedback();
   }, []);
 
-  // Fetch feedback records from the backend
-  const fetchFeedback = async () => {
-    try {
-      const response = await axios.get('http://localhost:8080/api/viewallfeedback');
-      console.log('Feedback Response:', response.data); // Log the response to check its structure
-
-      // Check if response data is an array
-      if (Array.isArray(response.data)) {
-        setFeedbackList(response.data);
-      } else {
-        setErrorMessage('Received data is not in expected format.');
-      }
-    } catch (error) {
-      setErrorMessage('Failed to load feedback. Please try again later.');
-      console.error('Error fetching feedback:', error);
-    }
-  };
-
   return (
     <div className="view-feedback-container">
-      <h3 className="view-feedback-heading">All Feedback Records</h3>
-
+      <h3 className="view-feedback-heading">My Feedback Records</h3>
       {errorMessage && <div className="view-feedback-error">{errorMessage}</div>}
-
       <table className="view-feedback-table">
         <thead>
           <tr>
             <th>Feedback ID</th>
-            <th>Student ID (SID)</th>
+            <th>Student Name</th>
+            <th>Event Name</th>
             <th>Rating</th>
             <th>Description</th>
             <th>Feedback Date</th>
@@ -49,16 +51,15 @@ const ViewFeedback = () => {
             feedbackList.map((feedback) => (
               <tr key={feedback.fid}>
                 <td>{feedback.fid}</td>
-                <td>{feedback.sid}</td>
+                <td>{feedback.sname || 'N/A'}</td>
+                <td>{feedback.eventname || 'N/A'}</td>
                 <td>{feedback.rating}</td>
                 <td>{feedback.description}</td>
                 <td>{feedback.feedbackDate || 'N/A'}</td>
               </tr>
             ))
           ) : (
-            <tr>
-              <td colSpan="5">No feedback records found.</td>
-            </tr>
+            <tr><td colSpan="6">No feedback found.</td></tr>
           )}
         </tbody>
       </table>

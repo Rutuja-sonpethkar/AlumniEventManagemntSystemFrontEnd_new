@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import './AddDepartment.css'; // Import your custom CSS
+import './AddDepartment.css'; 
 
 const AddDepartment = () => {
   const [dname, setDname] = useState('');

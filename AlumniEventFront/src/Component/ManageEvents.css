@@ -1,59 +1,166 @@
-.event-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 20px;
+/* General styling for the Manage Events page */
+.container {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-.event-card {
-  width: 100%;
-  max-width: 350px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  padding: 15px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
-  margin-bottom: 20px;
-  transition: box-shadow 0.3s ease;
-}
-
-.event-card:hover {
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-}
-
-.event-item {
-  margin-bottom: 10px;
-  font-size: 1.1em;
-}
-
-.event-edit input {
-  margin-bottom: 10px;
-  width: 100%;
-}
-
-.event-edit label {
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.event-card h4 {
-  font-size: 1.3em;
-  margin-bottom: 10px;
-}
-
-.d-flex {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.d-flex button {
-  margin-left: 10px;
+h2 {
+  color: #333;
+  font-size: 2rem;
 }
 
 .alert {
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
+.alert-info,
 .alert-warning {
   text-align: center;
-  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Styling for the search input */
+input.form-control {
+  max-width: 400px;
+  margin-bottom: 20px;
+  display: block;
+  margin: 0 auto;
+}
+
+.event-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+
+/* Styling for the event cards */
+.event-card {
+  background-color: white;
+  border: 2px solid #87CEEB; /* Sky blue border */
+  border-radius: 8px;
+  height: 300px; /* Fixed height */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Event card content styling */
+.event-card .event-details {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%; /* Make sure content takes full height of card */
+}
+
+.event-card .event-edit {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.event-card h5 {
+  color: #007bff;
+  font-size: 1.25rem;
+  margin-bottom: 10px;
+}
+
+.event-card p {
+  font-size: 1rem;
+  margin: 5px 0;
+}
+
+.event-card .d-flex {
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+/* Buttons styling inside event card */
+.event-card button {
+  padding: 8px 12px;
+  margin-left: 5px;
+}
+
+.event-card .btn-sm {
+  font-size: 0.875rem;
+}
+
+.event-edit input,
+.event-edit select {
+  margin-bottom: 10px;
+  padding: 8px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.event-edit .btn {
+  margin-top: 10px;
+}
+
+/* Styling for the event list (grid layout) */
+.event-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 cards per row */
+  gap: 20px;
+}
+
+/* Pagination styles */
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.pagination button {
+  padding: 8px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+  background-color: #0056b3;
+}
+
+.pagination button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.pagination span {
+  font-size: 1rem;
+}
+/* Small screens: Make event cards stack vertically */
+@media (max-width: 768px) {
+  .event-list {
+    grid-template-columns: repeat(2, 1fr); /* 2 cards per row on medium screens */
+  }
+
+  .pagination button {
+    padding: 6px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .event-list {
+    grid-template-columns: 1fr; /* 1 card per row on small screens */
+  }
 }

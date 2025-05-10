@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { FaLayerGroup } from 'react-icons/fa';
 import { Button, Modal, Form } from 'react-bootstrap';
-import './ManageBatch.css'; // Updated CSS
+import Swal from 'sweetalert2';  // Import SweetAlert2
+import './ManageBatch.css'; // Custom CSS
 
 const ManageBatch = () => {
   const [batches, setBatches] = useState([]);
@@ -11,11 +12,15 @@ const ManageBatch = () => {
   const [updatedBatchYear, setUpdatedBatchYear] = useState('');
   const [isEditable, setIsEditable] = useState(false);
 
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 5; // Show 5 batches per page
+
   useEffect(() => {
     const fetchBatches = async () => {
       try {
         const response = await axios.get('http://localhost:8080/api/ViewAllBatches');
-        setBatches(response.data);
+        const sortedBatches = response.data.sort((a, b) => b.batchyear - a.batchyear);
+        setBatches(sortedBatches);
       } catch (error) {
         console.error('Error fetching batches:', error);
       }
@@ -25,12 +30,38 @@ const ManageBatch = () => {
   }, []);
 
   const handleDeleteBatch = async (bid) => {
-    try {
-      await axios.delete(`http://localhost:8080/api/deletebyid/${bid}`);
-      setBatches(batches.filter(batch => batch.bid !== bid));
-    } catch (error) {
-      console.error('Error deleting batch:', error);
-    }
+    // SweetAlert2 for delete confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this batch?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`http://localhost:8080/api/deletebatchById/${bid}`);
+          
+          Swal.fire(
+            'Deleted!',
+            'The batch has been deleted.',
+            'success'
+          );
+          setBatches(batches.filter(batch => batch.bid !== bid));
+        } catch (error) {
+          console.error('Error deleting batch:', error);
+          // Show error alert
+          Swal.fire(
+            'Error!',
+            'There was an issue deleting the batch.',
+            'error'
+          );
+        }
+      }
+    });
   };
 
   const handleUpdateBatch = async () => {
@@ -52,11 +83,24 @@ const ManageBatch = () => {
     }
   };
 
+  
+  const totalPages = Math.ceil(batches.length / itemsPerPage);
+  const currentBatches = batches.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
-    <div className="mb-container container mt-5">
-      <div className="mb-header d-flex align-items-center mb-4">
-        <FaLayerGroup size={28} className="me-2 text-primary" />
-        <h3 className="m-0">Manage Batches</h3>
+    <div className="mb-container container">
+      <div className="mb-header text-center align-items-center">
+        <h3 className="text-center">
+          <FaLayerGroup size={28} className="text-primary m-2" />
+          Manage Batches
+        </h3>
       </div>
 
       <div className="mb-card card shadow-sm rounded-4">
@@ -70,16 +114,16 @@ const ManageBatch = () => {
               </tr>
             </thead>
             <tbody>
-              {batches.length === 0 ? (
+              {currentBatches.length === 0 ? (
                 <tr>
                   <td colSpan="3" className="mb-empty text-center py-3 text-muted">
                     No batches available
                   </td>
                 </tr>
               ) : (
-                batches.map((batch, index) => (
+                currentBatches.map((batch, index) => (
                   <tr key={batch.bid || index} className="mb-row">
-                    <td>{index + 1}</td>
+                    <td>{(currentPage - 1) * itemsPerPage + index + 1}</td>
                     <td>{batch.batchyear}</td>
                     <td className="mb-actions">
                       <Button
@@ -110,7 +154,37 @@ const ManageBatch = () => {
         </div>
       </div>
 
-      {/* Update Modal */}
+      
+      <div className="pagination-controls d-flex justify-content-center mt-4">
+        <Button
+          variant="secondary"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </Button>
+
+        {[...Array(totalPages)].map((_, index) => (
+          <Button
+            key={index}
+            variant="outline-primary"
+            className={`pagination-btn ${currentPage === index + 1 ? 'active' : ''}`}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </Button>
+        ))}
+
+        <Button
+          variant="secondary"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </Button>
+      </div>
+
+     
       <Modal show={showModal} onHide={() => setShowModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Update Batch</Modal.Title>

@@ -1,0 +1,58 @@
+.batch-container {
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f3f3f3;
+    padding: 40px 20px;
+  }
+  
+  .batch-box {
+    width: 600px;
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .batch-title {
+    text-align: center;
+    margin-bottom: 25px;
+    font-weight: bold;
+    font-size: 22px;
+    color: #333;
+  }
+  
+  .batch-input {
+    margin-bottom: 20px;
+    padding: 12px;
+    font-size: 16px;
+  }
+
+  
+  .batch-button {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    margin-top: 20px;
+  }
+  
+  .batch-message {
+    padding: 10px 15px;
+    border-radius: 5px;
+    font-size: 15px;
+  }
+  
+  .batch-message.success {
+    color: #155724;
+    background-color: #d4edda;
+    border: 1px solid #c3e6cb;
+  }
+  
+  .batch-message.error {
+    color: #721c24;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+  }
+  

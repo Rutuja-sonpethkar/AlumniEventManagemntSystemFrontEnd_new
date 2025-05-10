@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Button, Card, Row, Col, Alert } from 'react-bootstrap';
 import axios from 'axios';
-import './ViewJob.css'; // Updated: custom CSS file for this component only
+import './ViewJob.css'; 
 
 const ViewJob = () => {
   const [jobs, setJobs] = useState([]);

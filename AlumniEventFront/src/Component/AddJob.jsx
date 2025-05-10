@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button, Row, Col } from 'react-bootstrap';
 import axios from 'axios';
+import './AddJob.css'; 
 
 const AddJob = () => {
     const [formData, setFormData] = useState({
@@ -10,7 +11,7 @@ const AddJob = () => {
         jobtype: '',
         description: '',
         deadline: '',
-        sid: '' // alumni ID (as string initially)
+        sid: ''
     });
 
     const handleChange = (e) => {
@@ -26,7 +27,7 @@ const AddJob = () => {
 
         const payload = {
             ...formData,
-            sid: parseInt(formData.sid, 10) // convert sid to integer
+            sid: parseInt(formData.sid, 10)
         };
 
         axios.post('http://localhost:8080/api/AddJob', payload)
@@ -53,7 +54,7 @@ const AddJob = () => {
     };
 
     return (
-        <div className="p-4">
+        <div className="add-job-container p-4">
             <h2 className="text-center mb-4">Add Job</h2>
             <Form onSubmit={handleSubmit}>
                 <Form.Group controlId="formTitle">

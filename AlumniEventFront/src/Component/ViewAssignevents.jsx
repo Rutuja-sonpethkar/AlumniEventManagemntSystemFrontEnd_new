@@ -17,7 +17,6 @@ const ViewAssignevents = () => {
       console.error("Error fetching events:", error);
     }
   };
-  
 
   return (
     <div className="container mt-5">
@@ -40,7 +39,7 @@ const ViewAssignevents = () => {
                 <td>{event.eventname}</td>
                 <td>{event.location}</td>
                 <td>{event.date}</td>
-                <td>{event.AssignedStudentCount}</td> {/* match backend field */}
+                <td>{event.assignedStudentCount}</td>
               </tr>
             ))
           ) : (

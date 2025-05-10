@@ -11,8 +11,10 @@ import AddFeedback from './AddFeedback';
 import AllEvents from './AllEvents';
 import StudentProfile from './StudentProfile';
 import Viewfeedback from './Viewfeedback';
-import ViewJob from './ViewJob';
-import AddJob from './AddJob';
+// import Registeredevents from './Registeredevents';
+import Logout from './Logout';
+// import ViewJob from './ViewJob';
+// import AddJob from './AddJob';
 
 
 const Placeholder = ({ title }) => <h3 style={{ padding: '20px' }}>{title}</h3>;
@@ -33,6 +35,8 @@ const StudentDashboard = () => {
   };
 
   return (
+    <>
+    <Logout/>
     <div className="student-dashboard container-fluid">
       <aside className="student-sidebar">
         <h4 className="sidebar-title">Student Panel</h4>
@@ -59,11 +63,15 @@ const StudentDashboard = () => {
               <NavLink to="/student-dashboard/events" className="sidebar-sub-link">
                 <FontAwesomeIcon icon={faCalendar} className="me-2" /> Upcoming Events
               </NavLink>
+              {/* <NavLink to="/student-dashboard/registered-events" className="sidebar-sub-link">
+                <FontAwesomeIcon icon={faBriefcase} className="me-2" /> Registered events
+              </NavLink> */}
+              
             </div>
           </div>
 
           {/* Jobs Section */}
-          <div className="dropdown-section">
+          {/* <div className="dropdown-section">
             <div className="sidebar-link" onClick={() => toggleDropdown('jobs')}>
               <FontAwesomeIcon icon={faBriefcase} className="me-2" /> Jobs ▾
             </div>
@@ -78,7 +86,7 @@ const StudentDashboard = () => {
                 <FontAwesomeIcon icon={faBriefcase} className="me-2" /> Manage Jobs
               </NavLink>
             </div>
-          </div>
+          </div> */}
 
           {/* Feedback Section */}
           <div className="dropdown-section">
@@ -96,9 +104,9 @@ const StudentDashboard = () => {
           </div>
 
           {/* Logout Button */}
-          <div className="sidebar-link" onClick={handleLogout}>
+          {/* <div className="sidebar-link" onClick={handleLogout}>
             <FontAwesomeIcon icon={faSignOutAlt} className="me-2" /> Logout
-          </div>
+          </div> */}
 
         </nav>
       </aside>
@@ -109,12 +117,15 @@ const StudentDashboard = () => {
           <Route path='events' element={<AllEvents/>}/>
           <Route path="add-feedback" element={<AddFeedback />} />
           <Route path='manage-feedback' element={<Viewfeedback/>}/>
-          <Route path='manage-job' element={< ViewJob/>}/>
-          <Route path='add-job' element={<AddJob/>}/>
+          {/* <Route path="registered-events" element={<Registeredevents />} /> */}
+
+          {/* <Route path='manage-job' element={< ViewJob/>}/> */}
+          {/* <Route path='add-job' element={<AddJob/>}/> */}
          
         </Routes>
       </main>
     </div>
+    </>
   );
 };
 
