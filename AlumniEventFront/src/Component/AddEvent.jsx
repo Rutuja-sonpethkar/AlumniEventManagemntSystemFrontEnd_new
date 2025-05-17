@@ -43,7 +43,7 @@ function AddEvent() {
   };
 
   return (
-    <div className="event-container">
+    <div className="event-container mt-5">
       <form className="event-form" onSubmit={handleSubmit}>
         <h2>Create New Event</h2>
 

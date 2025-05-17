@@ -207,7 +207,7 @@ const ToStudent = () => {
   };
 
   return (
-    <div className="to-student-form-container container mt-4 p-4 border rounded bg-light shadow-sm">
+    <div className="to-student-form-container container mt-5 p-4 border rounded bg-light shadow-sm">
       <h2 className="to-student-title text-center mb-4">Assign Event to Student</h2>
 
       {errorMessage && (

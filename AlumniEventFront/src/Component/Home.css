@@ -31,15 +31,15 @@ body {
 }
 
 /* Optional: If you want to add overlay text or content, use the following (currently commented out) */
-.overlay {
+/* .overlay {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
   color: white;
-  z-index: 2; /* Ensure it's on top of the video */
-}
+  z-index: 2;
+} */
 
 /* Optional text styling */
 .overlay h1,

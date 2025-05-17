@@ -98,7 +98,7 @@ const AddAlumni = () => {
   };
 
   return (
-    <div className="container">
+    <div className="container mt-5">
       <div className="text-center position-relative">
         <h2 className="fw-bold">Add Alumni Form</h2>
         <IoMdCloseCircle

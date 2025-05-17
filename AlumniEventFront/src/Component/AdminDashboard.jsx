@@ -33,6 +33,7 @@ import ViewAssignevents from "./ViewAssignevents";
 import ManageOrganization from "./ManageOrganization";
 import Logout from "./Logout";
 import ManageFeedback from "./Managefeedback";
+import EventAttendance from "./EventAttendance";
 
 
 const Placeholder = ({ title }) => <h3 style={{ padding: "20px" }}>{title}</h3>;
@@ -150,11 +151,17 @@ const AdminDashboard = () => {
                   <FontAwesomeIcon icon={faUser} className="me-2" /> View
                   Assignevent
                 </NavLink>
+                <NavLink
+                  to="/admin-dashboard/event-attendance"
+                  className="sidebar-sub-link"
+                >
+                  <FontAwesomeIcon icon={faUsers} className="me-2" /> Event Attendance
+                </NavLink>
               </div>
             </div>
 
            
-            <div className="dropdown-section">
+            {/* <div className="dropdown-section">
               <div
                 className="sidebar-link"
                 onClick={() => toggleDropdown("organization")}
@@ -180,7 +187,7 @@ const AdminDashboard = () => {
                   <FontAwesomeIcon icon={faEdit} className="me-2" /> Manage
                 </NavLink>
               </div>
-            </div>
+            </div> */}
 
            
             <div className="dropdown-section">
@@ -316,19 +323,19 @@ const AdminDashboard = () => {
                       <div className="col-md-4">
                         <div className="card text-white bg-primary shadow rounded-3 p-3">
                           <h5 className="card-title">Total Alumni</h5>
-                          <p className="card-text fs-4">1,205</p>
+                          <p className="card-text fs-4">15</p>
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="card text-white bg-success shadow rounded-3 p-3">
                           <h5 className="card-title">Upcoming Events</h5>
-                          <p className="card-text fs-4">12</p>
+                          <p className="card-text fs-4">4</p>
                         </div>
                       </div>
                       <div className="col-md-4">
                         <div className="card text-white bg-warning shadow rounded-3 p-3">
-                          <h5 className="card-title">Job Listings</h5>
-                          <p className="card-text fs-4">45</p>
+                          <h5 className="card-title">Department</h5>
+                          <p className="card-text fs-4">6</p>
                         </div>
                       </div>
                     </div>
@@ -356,6 +363,7 @@ const AdminDashboard = () => {
             <Route path="manage-department" element={<ManageDepartment />} />
             <Route path="Add-batch" element={<AddBatch />} />
             <Route path="manage-batch" element={<ManageBatch />} />
+            <Route path="event-attendance" element={<EventAttendance/>}/>
             <Route path="add-job" element={<AddJob />} />
             <Route path="manage-job" element={<ManageJob />} />
             <Route path="viewallfeedback" element={<ManageFeedback/>}/>

@@ -86,78 +86,70 @@ import './AllEvents.css';
 
 const AllEvents = () => {
   const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
- 
   const fetchEvents = async () => {
-    setLoading(true);
     try {
       const student = JSON.parse(localStorage.getItem('student'));
       if (!student || !student.sid) {
         Swal.fire({
           icon: 'error',
-          title: 'Oops...',
-          text: 'Student ID is missing. Please log in first.',
+          title: 'Unauthorized',
+          text: 'Student info missing. Please log in again.',
         });
-        setLoading(false);
         return;
       }
 
-      const response = await axios.get(`http://localhost:8080/api/getAssignedEventByStudent/${student.sid}`);
-      setEvents(response.data);
+      const response = await axios.get(
+        `http://localhost:8080/api/getAssignedEventByStudent/${student.sid}`
+      );
+
+      setEvents(response.data); // Must include attendevent = 'yes' or 'no'
+
     } catch (error) {
       console.error('Error fetching events:', error);
       Swal.fire({
         icon: 'error',
         title: 'Error',
-        text: 'Error fetching events. Please try again later.',
+        text: 'Unable to fetch events. Try again later.',
       });
     } finally {
       setLoading(false);
     }
   };
 
- 
   const handleApply = async (eid, eventName) => {
+    const student = JSON.parse(localStorage.getItem('student'));
     try {
-      const student = JSON.parse(localStorage.getItem('student'));
-      if (!student || !student.sid) {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops...',
-          text: 'Student ID is missing. Please log in again.',
-        });
-        return;
-      }
-
-      const response = await axios.put(`http://localhost:8080/api/apply/${student.sid}/${eid}`);
-      console.log('Fetched Events:', response.data);
+      await axios.put(
+        `http://localhost:8080/api/apply/${student.sid}/${eid}`
+      );
 
       Swal.fire({
         icon: 'success',
-        title: 'Success!',
-        text: `Successfully registered for ${eventName}`,
+        title: 'Registered!',
+        text: `You have registered for "${eventName}".`,
       });
 
-     
-      setEvents((prevEvents) =>
-        prevEvents.map((event) =>
+      // Update state to show "Applied"
+      setEvents(prev =>
+        prev.map(event =>
           event.eid === eid ? { ...event, attendevent: 'yes' } : event
         )
       );
     } catch (error) {
-      if (error.response && error.response.status === 409) {
+      if (error.response?.status === 409) {
         Swal.fire({
-          icon: 'warning',
-          title: 'Already Applied',
-          text: `You have already applied for ${eventName}.`,
+          icon: 'info',
+          title: 'Already Registered',
+          text: `You already registered for "${eventName}".`,
         });
       } else {
-        console.error('Error applying for event:', error);
+        console.error('Apply error:', error);
         Swal.fire({
           icon: 'error',
           title: 'Error',
-          text: 'Failed to apply for the event. Please try again later.',
+          text: 'Something went wrong while applying.',
         });
       }
     }
@@ -170,29 +162,26 @@ const AllEvents = () => {
   return (
     <div className="events-container">
       <h1>Upcoming Events</h1>
-
       {loading ? (
         <p>Loading events...</p>
+      ) : events.length === 0 ? (
+        <p>No events assigned to you.</p>
       ) : (
         <div className="events-list">
-          {events.length > 0 ? (
-            events.map((event, index) => (
-              <div key={`${event.eid}-${index}`} className="event-item">
-                <h3>{event.eventname}</h3>
-                <p>Date: {new Date(event.date).toLocaleDateString()}</p>
-                <p>Location: {event.location}</p>
-                <button
-                  onClick={() => handleApply(event.eid, event.eventname)}
-                  className={`apply-btn ${event.attendevent === 'yes' ? 'applied' : ''}`}
-                  disabled={event.attendevent === 'yes'}
-                >
-                  {event.attendevent === 'yes' ? 'Applied' : 'Apply'}
-                </button>
-              </div>
-            ))
-          ) : (
-            <p>No events available.</p>
-          )}
+          {events.map((event) => (
+            <div key={event.eid} className="event-item">
+              <h3>{event.eventname}</h3>
+              <p>Date: {new Date(event.date).toLocaleDateString()}</p>
+              <p>Location: {event.location}</p>
+              <button
+                onClick={() => handleApply(event.eid, event.eventname)}
+                disabled={event.attendevent === 'yes'}
+                className={`apply-btn ${event.attendevent === 'yes' ? 'applied' : ''}`}
+              >
+                {event.attendevent === 'yes' ? 'Applied' : 'Apply'}
+              </button>
+            </div>
+          ))}
         </div>
       )}
     </div>

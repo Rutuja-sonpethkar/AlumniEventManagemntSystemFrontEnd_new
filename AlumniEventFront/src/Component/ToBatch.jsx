@@ -102,7 +102,7 @@ const handleSubmit = async (e) => {
 };
 
   return (
-    <div className="assign-event-form container mt-4">
+    <div className="assign-event-form container mt-5">
       <h2 className="text-center mb-4">Assign Event to Batch</h2>
 
       {errorMessage && <Alert variant="danger">{errorMessage}</Alert>}

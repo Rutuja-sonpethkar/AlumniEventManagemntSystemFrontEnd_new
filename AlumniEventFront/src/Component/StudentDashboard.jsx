@@ -11,7 +11,7 @@ import AddFeedback from './AddFeedback';
 import AllEvents from './AllEvents';
 import StudentProfile from './StudentProfile';
 import Viewfeedback from './Viewfeedback';
-// import Registeredevents from './Registeredevents';
+import Registeredevents from './Registeredevents';
 import Logout from './Logout';
 // import ViewJob from './ViewJob';
 // import AddJob from './AddJob';
@@ -63,9 +63,9 @@ const StudentDashboard = () => {
               <NavLink to="/student-dashboard/events" className="sidebar-sub-link">
                 <FontAwesomeIcon icon={faCalendar} className="me-2" /> Upcoming Events
               </NavLink>
-              {/* <NavLink to="/student-dashboard/registered-events" className="sidebar-sub-link">
+              <NavLink to="/student-dashboard/registered-events" className="sidebar-sub-link">
                 <FontAwesomeIcon icon={faBriefcase} className="me-2" /> Registered events
-              </NavLink> */}
+              </NavLink>
               
             </div>
           </div>
@@ -117,7 +117,7 @@ const StudentDashboard = () => {
           <Route path='events' element={<AllEvents/>}/>
           <Route path="add-feedback" element={<AddFeedback />} />
           <Route path='manage-feedback' element={<Viewfeedback/>}/>
-          {/* <Route path="registered-events" element={<Registeredevents />} /> */}
+          <Route path="registered-events" element={<Registeredevents />} />
 
           {/* <Route path='manage-job' element={< ViewJob/>}/> */}
           {/* <Route path='add-job' element={<AddJob/>}/> */}

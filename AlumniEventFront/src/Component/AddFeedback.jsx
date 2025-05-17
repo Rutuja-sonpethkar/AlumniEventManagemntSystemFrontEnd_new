@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import AlumniServices from '../Service/AlumniServices'; // Ensure this path is correct
+import AlumniServices from '../Service/AlumniServices';
 import './AddFeedback.css';
 
 const AddFeedback = () => {
   const [sid, setSid] = useState('');
+  const [studentName, setStudentName] = useState('');
   const [rating, setRating] = useState(1);
   const [description, setDescription] = useState('');
   const [feedbackDate, setFeedbackDate] = useState('');
@@ -13,11 +14,28 @@ const AddFeedback = () => {
   const [successMessage, setSuccessMessage] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
+  // Set today's date
+  const getTodayDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0]; // Format: yyyy-mm-dd
+  };
+
+  useEffect(() => {
+    const studentData = JSON.parse(localStorage.getItem("student"));
+    if (studentData) {
+      setSid(studentData.sid);
+      setStudentName(studentData.name);
+    } else {
+      setErrorMessage("Student not found. Please login.");
+    }
+
+    setFeedbackDate(getTodayDate()); // Set default feedback date to today
+  }, []);
+
   useEffect(() => {
     const fetchEvents = async () => {
       try {
         const response = await AlumniServices.getEvents();
-        console.log('Fetched events:', response.data);
         setEvents(response.data);
       } catch (error) {
         console.error('Error fetching events:', error);
@@ -41,15 +59,20 @@ const AddFeedback = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!sid || !description || !selectedEvent) {
+    const today = getTodayDate();
+
+    if (!sid || !description || !selectedEvent || !feedbackDate) {
       setErrorMessage('All fields are required!');
-      setSuccessMessage('');
       return;
     }
 
     if (description.length < 5) {
       setErrorMessage('Description should be at least 5 characters long.');
-      setSuccessMessage('');
+      return;
+    }
+
+    if (feedbackDate !== today) {
+      setErrorMessage('Please select today\'s date as feedback date.');
       return;
     }
 
@@ -57,25 +80,20 @@ const AddFeedback = () => {
       sid,
       rating,
       description,
-      eventId: Number(selectedEvent),  // ✅ Fixed conversion here
-      feedbackDate: feedbackDate ? feedbackDate : null,
+      eventId: Number(selectedEvent),
+      feedbackDate
     };
 
     try {
-      console.log('Feedback:', feedback);
       await axios.post("http://localhost:8080/api/AddFeedback", feedback);
       setSuccessMessage('Feedback submitted successfully!');
-      setErrorMessage('');
-
-      setSid('');
-      setRating(1);
       setDescription('');
-      setFeedbackDate('');
+      setRating(1);
       setSelectedEvent('');
+      setFeedbackDate(today);
     } catch (error) {
       console.error('Error submitting feedback:', error);
       setErrorMessage('Failed to submit feedback. Please try again later.');
-      setSuccessMessage('');
     }
   };
 
@@ -98,7 +116,7 @@ const AddFeedback = () => {
             <option value="">Select Event</option>
             {events.map((event) => (
               <option key={event.eid} value={event.eid}>
-                {event.name} (ID: {event.eid})
+                {event.name}
               </option>
             ))}
           </select>
@@ -140,13 +158,12 @@ const AddFeedback = () => {
         </div>
 
         <div className="add-feedback-form-group">
-          <label>Student ID (SID):</label>
+          <label>Student:</label>
           <input
             type="text"
-            value={sid}
-            onChange={(e) => setSid(e.target.value)}
-            placeholder="Enter your student ID"
+            value={studentName}
             className="add-feedback-form-control"
+            disabled
           />
         </div>
 
