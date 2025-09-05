@@ -1,0 +1,95 @@
+/* Events.css */
+
+.events-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.event-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.event-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.event-card {
+  background-color:whi;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: calc(33.33% - 20px); 
+  padding: 25px; 
+  transition: all 0.3s ease-in-out;
+  height: 320px; 
+}
+
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.event-details h5 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.event-details p {
+  font-size: 1.1rem;
+  color: #555;
+}
+
+.event-details p strong {
+  color: #333;
+}
+
+.alert {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+
+.alert-info {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.alert-warning {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+@media (max-width: 768px) {
+  .event-card {
+    width: calc(50% - 10px); 
+  }
+}
+
+@media (max-width: 576px) {
+  .event-card {
+    width: 100%; 
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .event-details p {
+    font-size: 0.9rem;
+  }
+}

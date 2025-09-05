@@ -15,7 +15,7 @@ const eventGallery = [
 const Gallery = () => {
   return (
     <div className="container-fluid " id="gallery">
-      <h2 className="text-center mt-4 text-dark mb-4">Alumni Event Gallery</h2>
+      <h2 className="text-center  text-dark mb-4">Alumni Event Gallery</h2>
       <div className="row">
         {eventGallery.map(([image, title], index) => (
           <div className="col-sm-12 col-md-6 col-lg-4 mb-4" key={index}>

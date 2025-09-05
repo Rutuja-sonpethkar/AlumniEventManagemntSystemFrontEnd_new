@@ -2,13 +2,13 @@
 .student-dashboard {
   display: flex;
   min-height: 100vh;
-  background-color: rgb(244, 244, 249); /* Light background for the dashboard */
+  background-color: rgb(244, 244, 249); 
 }
 
 /* Sidebar Styling */
 .student-sidebar {
   width: 240px;
-  background-color: rgb(34, 40, 49); /* Dark Slate Blue background */
+  background-color: rgb(34, 40, 49); 
   color: rgb(255, 255, 255); /* White text color */
   padding-top: 20px;
   position: fixed;
@@ -17,6 +17,7 @@
   height: 100vh;
   overflow: hidden; /* Prevent scrolling */
   box-shadow: 2px 0px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 70px;
 }
 
 /* Sidebar Title */
@@ -25,6 +26,7 @@
   color: rgb(255, 255, 255); /* White text */
   text-align: center;
   padding-bottom: 30px;
+  padding-top: 40px;
 }
 
 /* Sidebar Navigation Links */
@@ -32,6 +34,8 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  padding-top: 20px;
+  margin-left: 20px;
 }
 
 /* Sidebar Link Styling */
@@ -110,8 +114,9 @@
   margin-left: 240px; /* Space for the sidebar */
   padding: 20px;
   width: 100%;
-  background-color: rgb(249, 249, 249); /* Light background for the content */
+  /* background-color: rgb(249, 249, 249);  */
   transition: margin-left 0.3s ease-in-out; /* Smooth transition for resizing */
+  margin-top: 50px;
 }
 
 /* Page Title */

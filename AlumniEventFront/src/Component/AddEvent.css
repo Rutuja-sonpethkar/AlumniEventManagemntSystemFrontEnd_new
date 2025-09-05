@@ -1,41 +1,41 @@
-/* Container */
+
 .event-container {
-    width: 100%; /* Increase container width */
-    margin: 50px auto;
+    width: 100%; 
+    /* margin: 50px auto; */
     padding: 40px;
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   }
   
-  /* Form */
+  
   .event-form {
     display: flex;
     flex-direction: column;
-    width: 100%; /* Ensure the form uses the full width of the container */
-    max-width: 900px; /* Set max width for large screens */
-    margin: 0 auto; /* Center the form */
+    width: 100%; 
+    max-width: 900px; 
+    margin: 0 auto;
   }
   
-  /* Heading */
+ 
   .event-form h1 {
     text-align: center;
     margin-bottom: 30px;
     font-size: 2rem;
   }
   
-  /* Input fields */
+  
   .event-form input {
     margin-bottom: 20px;
-    padding: 12px; /* Increase padding for better input experience */
+    padding: 12px; 
     font-size: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
-    width: 100%; /* Ensure the input fields take up the full width */
-    box-sizing: border-box; /* Prevent overflow from padding */
+    width: 100%; 
+    box-sizing: border-box; 
   }
   
-  /* Button */
+  
   .event-form button {
     padding: 15px;
     font-size: 18px;
@@ -44,7 +44,7 @@
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    width: 100%; /* Make the button full-width */
+    width: 100%; 
   }
   
   .event-form button:hover {

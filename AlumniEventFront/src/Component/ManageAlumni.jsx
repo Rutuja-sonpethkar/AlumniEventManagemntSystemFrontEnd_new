@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import AlumniServices from "../Service/AlumniServices";
 import axios from "axios";
+import Swal from "sweetalert2";
 import "./ManageAlumni.css";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faTrash } from '@fortawesome/free-solid-svg-icons';
-
-
 
 function ManageAlumni() {
   const [alumniList, setAlumniList] = useState([]);
@@ -15,6 +14,9 @@ function ManageAlumni() {
   const [searchName, setSearchName] = useState('');
   const [editableAlumni, setEditableAlumni] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
+
+  const [currentPage, setCurrentPage] = useState(1);
+  const alumniPerPage = 5;
 
   useEffect(() => {
     AlumniServices.getDepartments().then(res => setDepartments(res.data));
@@ -33,22 +35,46 @@ function ManageAlumni() {
   };
 
   const handleSearch = () => {
-    return searchName
+    const filtered = searchName
       ? alumniList.filter((alumni) =>
           alumni.name.toLowerCase().includes(searchName.toLowerCase())
         )
       : alumniList;
+
+    const indexOfLast = currentPage * alumniPerPage;
+    const indexOfFirst = indexOfLast - alumniPerPage;
+    return filtered.slice(indexOfFirst, indexOfLast);
   };
 
+  const totalPages = Math.ceil(
+    (searchName
+      ? alumniList.filter((alumni) =>
+          alumni.name.toLowerCase().includes(searchName.toLowerCase())
+        ).length
+      : alumniList.length) / alumniPerPage
+  );
+
   const handleDelete = async (sid) => {
-    if (window.confirm("Are you sure you want to delete this alumni?")) {
-      try {
-        await axios.delete(`http://localhost:8080/api/deleteAlumnibyId/${sid}`);
-        setAlumniList(alumniList.filter((a) => a.sid !== sid));
-      } catch (error) {
-        console.error("Error deleting alumni:", error);
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`http://localhost:8080/api/deleteAlumnibyId/${sid}`);
+          setAlumniList(alumniList.filter((a) => a.sid !== sid));
+          Swal.fire('Deleted!', 'Alumni has been deleted.', 'success');
+        } catch (error) {
+          console.error("Error deleting alumni:", error);
+          Swal.fire('Error!', 'Something went wrong.', 'error');
+        }
       }
-    }
+    });
   };
 
   const handleEdit = (alumni) => {
@@ -68,8 +94,10 @@ function ManageAlumni() {
       setEditableAlumni(null);
       setSuccessMessage("Alumni updated successfully!");
       setTimeout(() => setSuccessMessage(''), 2000);
+      Swal.fire('Updated!', 'Alumni updated successfully.', 'success');
     } catch (error) {
       console.error("Update error:", error);
+      Swal.fire('Error!', 'Update failed.', 'error');
     }
   };
 
@@ -114,17 +142,31 @@ function ManageAlumni() {
               <td>{getDepartmentName(a.did)}</td>
               <td>{getBatchYear(a.bid)}</td>
               <td>
-              <button className="btn btn-primary me-2" onClick={() => handleEdit(a)}>
-        <FontAwesomeIcon icon={faEdit} />
-      </button>
-      <button className="btn btn-danger" onClick={() => handleDelete(a.sid)}>
-        <FontAwesomeIcon icon={faTrash} />
-      </button>
+                <div className="action-buttons">
+                  <button className="btn btn-primary me-2" onClick={() => handleEdit(a)}>
+                    <FontAwesomeIcon icon={faEdit} />
+                  </button>
+                  <button className="btn btn-danger" onClick={() => handleDelete(a.sid)}>
+                    <FontAwesomeIcon icon={faTrash} />
+                  </button>
+                </div>
               </td>
             </tr>
           ))}
         </tbody>
       </table>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+          <button
+            key={num}
+            onClick={() => setCurrentPage(num)}
+            className={`page-btn ${currentPage === num ? "active" : ""}`}
+          >
+            {num}
+          </button>
+        ))}
+      </div>
 
       {editableAlumni && (
         <div className="edit-form">

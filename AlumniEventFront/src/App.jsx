@@ -7,11 +7,14 @@ import Home from './Component/Home';
 import AboutUs from './Component/AboutUs';
 import Gallery from './Component/Gallery';
 import Events from './Component/Events';
-import Job from './Component/Job';
+// import Job from './Component/Job';
 import Login from './Component/Login';
+
+import Logout from './Component/Logout';
 
 import AdminDashboard from './Component/AdminDashboard'; // <-- Ensure this is the correct path to AdminDashboard
 import StudentDashboard from './Component/StudentDashboard';
+import Footer from './Component/Footer';
 
 
 function MainPage() {
@@ -21,8 +24,9 @@ function MainPage() {
       <div id="home"><Home /></div>
       <div id="about"><AboutUs /></div>
       <div id="gallery"><Gallery /></div>
-      <div id="jobs"><Job /></div>
+      {/* <div id="jobs"><Job /></div> */}
       <div id="events"><Events /></div>
+      <div id="footer"><Footer/></div>
     </div>
   );
 }
@@ -35,6 +39,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/admin-dashboard/*" element={<AdminDashboard />} />
         <Route path="/student-dashboard/*" element={<StudentDashboard />} />
+        <Route path="/" element={<Logout/>}/>
       </Routes>
     </Router>
   );

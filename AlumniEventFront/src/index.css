@@ -12,6 +12,7 @@
   width: 100%;
   z-index: 1000;
   box-sizing: border-box;
+  
 }
 
 /* Title on the left side */
@@ -48,6 +49,41 @@
 
 .nav-link:hover {
   background-color: #0055aa; /* Background color on hover */
+}
+
+/* Toggler button (hamburger icon) */
+.navbar-toggler {
+  display: none;
+  font-size: 28px;
+  color: white;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Responsive behavior */
+@media (max-width: 768px) {
+  .navbar-toggler {
+    display: block;
+  }
+
+  .navbar-right {
+    display: none;
+    flex-direction: column;
+    background-color: #003366;
+    position: absolute;
+    top: 70px;
+    right: 0;
+    width: 100%;
+    padding: 10px 0;
+    gap: 10px;
+    align-items: center;
+    z-index: 999;
+  }
+
+  .navbar-right.open {
+    display: flex;
+  }
 }
 
 

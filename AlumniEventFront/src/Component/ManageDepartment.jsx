@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './ManageDepartment.css'; // Updated CSS file with unique class names
+import './ManageDepartment.css'; 
 
 const ManageDepartment = () => {
   const [departments, setDepartments] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [editingId, setEditingId] = useState(null);
   const [editedName, setEditedName] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 4; // Show 4 departments per page
 
   useEffect(() => {
     fetchDepartments();
@@ -58,6 +60,17 @@ const ManageDepartment = () => {
     dep.dname.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
+  // Pagination logic
+  const totalPages = Math.ceil(filteredDepartments.length / itemsPerPage);
+  const currentDepartments = filteredDepartments.slice(
+    (currentPage - 1) * itemsPerPage,
+    currentPage * itemsPerPage
+  );
+
+  const handlePageChange = (pageNumber) => {
+    setCurrentPage(pageNumber);
+  };
+
   return (
     <div className="md-container">
       <h2 className="md-page-title">Manage Departments</h2>
@@ -79,7 +92,7 @@ const ManageDepartment = () => {
           </tr>
         </thead>
         <tbody>
-          {filteredDepartments.map((dept) => (
+          {currentDepartments.map((dept) => (
             <tr key={dept.did}>
               <td>{dept.did}</td>
               <td>
@@ -111,6 +124,35 @@ const ManageDepartment = () => {
           ))}
         </tbody>
       </table>
+
+      {/* Pagination Controls */}
+      <div className="pagination-controls">
+        <button
+          className="pagination-btn"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          Previous
+        </button>
+
+        {[...Array(totalPages)].map((_, index) => (
+          <button
+            key={index}
+            className={`pagination-btn ${currentPage === index + 1 ? 'active' : ''}`}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
+        ))}
+
+        <button
+          className="pagination-btn"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          Next
+        </button>
+      </div>
     </div>
   );
 };

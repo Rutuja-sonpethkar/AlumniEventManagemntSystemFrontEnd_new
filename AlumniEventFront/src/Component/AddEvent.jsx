@@ -1,12 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
-import "./AddEvent.css"; // Optional: You can create this CSS file for styling
+import "./AddEvent.css"; 
 
 function AddEvent() {
   const [form, setForm] = useState({
     name: "",
     location: "",
-    date: "", // Date as string (e.g. "2025-04-20")
+    date: "", 
   });
 
   const handleChange = (e) =>
@@ -23,7 +23,7 @@ function AddEvent() {
       console.log("Server response:", response.data);
       alert("Event created successfully!");
 
-      // Reset form
+     
       setForm({
         name: "",
         location: "",
@@ -43,7 +43,7 @@ function AddEvent() {
   };
 
   return (
-    <div className="event-container">
+    <div className="event-container mt-5">
       <form className="event-form" onSubmit={handleSubmit}>
         <h2>Create New Event</h2>
 

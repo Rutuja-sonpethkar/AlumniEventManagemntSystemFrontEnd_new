@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import './ManageOrganization.css';
 
 const ManageOrganization = () => {
   const [organizations, setOrganizations] = useState([]);
   const [editingId, setEditingId] = useState(null);
   const [editedOrg, setEditedOrg] = useState({
-    oid: '',
+    uid: '',
     name: '',
     email: '',
     phone: '',
     isEnable: 'Yes',
-    id: ''  // This is for admin ID
+    id: ''  // Still included for backend updates, just not shown
   });
 
-  // Fetch all organizations when the component mounts
   useEffect(() => {
     const fetchOrganizations = async () => {
       try {
@@ -28,58 +28,66 @@ const ManageOrganization = () => {
     fetchOrganizations();
   }, []);
 
-  // Edit organization click
   const handleEditClick = (org) => {
-    setEditingId(org.oid);
+    setEditingId(org.uid);
     setEditedOrg({ ...org });
   };
 
-  // Handle input change in the form
   const handleInputChange = (e) => {
     setEditedOrg({ ...editedOrg, [e.target.name]: e.target.value });
   };
 
-  // Update organization details
   const handleUpdate = async () => {
     try {
-      // Update organization via API
       await axios.put('http://localhost:8080/api/Updateorgnaztion', editedOrg);
-
-      // Update the local state directly
       setOrganizations(prevState =>
         prevState.map(org =>
-          org.oid === editedOrg.oid ? { ...org, ...editedOrg } : org
+          org.uid === editedOrg.uid ? { ...org, ...editedOrg } : org
         )
       );
-
-      setEditingId(null); // Close the edit form
+      setEditingId(null);
     } catch (err) {
       console.error(err);
     }
   };
 
-  // Delete organization using provided API
   const handleDelete = async (uid) => {
-    if (window.confirm('Are you sure you want to delete this organization?')) {
-      try {
-        // Delete organization via the provided API
-        await axios.delete(`http://localhost:8080/api/DeleteorgnazationByid/${uid}`);
-
-        // Remove the organization from the local state
-        setOrganizations(prevState => prevState.filter(org => org.uid !== uid));
-      } catch (err) {
-        console.error(err);
+    // SweetAlert2 for delete confirmation
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'Do you want to delete this organization?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'Cancel'
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        try {
+          await axios.delete(`http://localhost:8080/api/DeleteorgnazationByid/${uid}`);
+          // Show success alert
+          Swal.fire(
+            'Deleted!',
+            'The organization has been deleted.',
+            'success'
+          );
+          setOrganizations(prevState => prevState.filter(org => org.uid !== uid));
+        } catch (err) {
+          console.error(err);
+          // Show error alert
+          Swal.fire(
+            'Error!',
+            'There was an issue deleting the organization.',
+            'error'
+          );
+        }
       }
-    }
-  };
-
-  // Function to get admin name by ID (now simply returning ID as name)
-  const getAdminName = (adminId) => {
-    return adminId ? `Admin ${adminId}` : 'No Admin Assigned';
+    });
   };
 
   return (
-    <div className="org-container">
+    <div className="org-container" style={{ width: '100%' }}>
       <h3 className="org-title">Manage Organizations</h3>
       <table className="org-table">
         <thead>
@@ -88,14 +96,13 @@ const ManageOrganization = () => {
             <th className="org-th">Email</th>
             <th className="org-th">Phone</th>
             <th className="org-th">Enabled</th>
-            <th className="org-th">Admin</th>
             <th className="org-th">Actions</th>
           </tr>
         </thead>
         <tbody>
           {organizations.map((org) => (
-            <tr key={org.oid}>
-              {editingId === org.oid ? (
+            <tr key={org.uid}>
+              {editingId === org.uid ? (
                 <>
                   <td>
                     <input
@@ -133,14 +140,6 @@ const ManageOrganization = () => {
                     </select>
                   </td>
                   <td>
-                    <input
-                      className="org-input"
-                      name="id"
-                      value={editedOrg.id}
-                      onChange={handleInputChange}
-                    />
-                  </td>
-                  <td>
                     <button className="org-btn org-btn-save" onClick={handleUpdate}>
                       Save
                     </button>
@@ -158,7 +157,6 @@ const ManageOrganization = () => {
                   <td>{org.email}</td>
                   <td>{org.phone}</td>
                   <td>{org.isEnable}</td>
-                  <td>{getAdminName(org.id)}</td> {/* Display admin ID as admin name */}
                   <td>
                     <button
                       className="org-btn org-btn-edit"
@@ -168,7 +166,7 @@ const ManageOrganization = () => {
                     </button>
                     <button
                       className="org-btn org-btn-delete"
-                      onClick={() => handleDelete(org.uid)} // Use `uid` for delete
+                      onClick={() => handleDelete(org.uid)}
                     >
                       Delete
                     </button>

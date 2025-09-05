@@ -1,95 +1,82 @@
-/* Close button styling (left side) */
-.ao-close-icon-left {
-  position: absolute;
-  top: 10px;
-  left: 20px; /* Position close button at top-left corner */
-  cursor: pointer;
-  color: #f00; /* Red color for the close icon */
-  transition: color 0.3s ease;
-}
-
-.ao-close-icon-left:hover {
-  color: #b00; /* Darker red on hover */
-}
-
-/* Container for the form */
-.ao-container {
+.organization-container {
+  max-width: 800px;
+  margin: 0 auto;
   padding: 20px;
   background-color: #f9f9f9;
   border-radius: 8px;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-/* Center text for form heading */
-.ao-text-center {
+.form-header {
   text-align: center;
-  margin-bottom: 20px;
+  position: relative;
 }
 
-/* Spacing between the form fields */
-.ao-d-flex {
-  display: flex;
-  gap: 20px; /* Adds space between the fields */
+.form-title {
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #333;
 }
 
-/* Form group styling */
-.ao-form-group {
-  margin-bottom: 15px;
+.close-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
 }
 
-.ao-mt-2 {
-  margin-top: 10px;
-}
-
-.ao-mt-3 {
+.message-alert {
   margin-top: 20px;
 }
 
-.ao-alert {
+
+.form-group-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
   margin-top: 15px;
+  
 }
 
-/* Input fields and selects styling */
-.ao-input,
-.ao-select {
+.form-group {
+  flex: 1;
+}
+
+.form-input, .form-select {
+  border-radius: 4px;
+  padding: 10px;
   width: 100%;
-  padding: 8px;
-  border-radius: 5px;
-  border: 1px solid #ddd;
+  margin-top: 5px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
 }
 
-.ao-input:focus,
-.ao-select:focus {
+.form-input:focus, .form-select:focus {
   border-color: #007bff;
   outline: none;
 }
 
-/* Button styling */
-.ao-btn-lg {
-  padding: 12px 20px;
-  font-size: 16px;
-  width: 100%;
-  max-width: 300px; /* Max width for better responsiveness */
-}
-
-.ao-button-width {
-  width: 100%;
-  max-width: 300px;
-}
-
-/* Add space between button and input boxes */
-.ao-d-flex.ao-mt-2 {
-  margin-top: 15px; /* Space between rows */
-}
-
-/* Flexbox container for admin selection section */
-.ao-admin-enable-container {
+.form-toggle-container {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 15px;
 }
 
-/* Make sure form elements look uniform */
-.ao-label {
-  font-weight: bold;
+.submit-btn {
+  width: 40%;
+  margin: 20px auto;
+  padding: 12px;
+  font-size: 1.1rem;
+  border-radius: 30px;
+  /* margin-left: 100px; */
+}
+
+.submit-btn:hover {
+  background-color: #0056b3;
+  border-color: #0056b3;
+}
+#formName
+{
+  margin-right: 20px;
 }

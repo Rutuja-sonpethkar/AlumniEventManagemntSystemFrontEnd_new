@@ -9,9 +9,9 @@ function AddEventForm() {
   const [studentName, setStudentName] = useState('');
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const [events, setEvents] = useState([]); // Store created events
+  const [events, setEvents] = useState([]); 
 
-  // Simulate fetching student name based on sid
+ 
   
 
   const handleSidChange = (e) => {
@@ -40,10 +40,10 @@ function AddEventForm() {
       studentName
     };
 
-    // Add the event to the events array
+    
     setEvents([...events, newEvent]);
 
-    // Reset the form
+    
     setEventName('');
     setLocation('');
     setEventDate('');
@@ -123,7 +123,7 @@ function AddEventForm() {
             </Alert>
           )}
 
-          {/* Display the list of events */}
+          
           <h3 className="mt-5">Upcoming Events</h3>
           <ul>
             {events.map((event, index) => (
